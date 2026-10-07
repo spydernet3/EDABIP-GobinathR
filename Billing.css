@@ -1,0 +1,594 @@
+/* --------------------------------------------------------------------------
+   Variables & Reset
+   -------------------------------------------------------------------------- */
+:root {
+  --primary-teal: #0f3832;
+  --bg-page: #f4f6f8;
+  --bg-card: #ffffff;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+/* Outer component layout (slots alongside any sidebar) */
+.billing-page {
+  width: 100%;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   1. Top Navigation Bar
+   -------------------------------------------------------------------------- */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 320px;
+  height: 40px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0 12px;
+  color: #9ca3af;
+}
+
+.search-input-wrap input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  color: var(--text-main);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-icon {
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: #4b5563;
+}
+
+/* --------------------------------------------------------------------------
+   2. Page Header & Actions
+   -------------------------------------------------------------------------- */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.main-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.welcome-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.welcome-tag h2 {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.status-pill {
+  font-size: 11px;
+  font-weight: 600;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-filter, .category-select {
+  height: 36px;
+  padding: 0 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+}
+
+.btn-refresh {
+  height: 36px;
+  padding: 0 14px;
+  background: var(--primary-teal);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   3. Summary Metrics Row
+   -------------------------------------------------------------------------- */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-box {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-box.teal {
+  background: var(--primary-teal);
+  color: #ffffff;
+}
+
+.icon-box.dark {
+  background: #111827;
+  color: #ffffff;
+}
+
+.card-title {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.card-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.tag-badge {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.tag-badge.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.tag-badge.orange {
+  background: #ffedd5;
+  color: #c2410c;
+}
+
+/* --------------------------------------------------------------------------
+   4. Usage Overview Grid
+   -------------------------------------------------------------------------- */
+.usage-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.block-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.usage-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.usage-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.usage-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.usage-info span {
+  color: var(--text-muted);
+}
+
+.usage-stats {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.meter-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #f3f4f6;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.meter-fill {
+  height: 100%;
+  background-color: var(--primary-teal);
+  border-radius: 999px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Split Row: History & Payments
+   -------------------------------------------------------------------------- */
+.split-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+}
+
+.panel-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.history-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.history-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.metric-item label {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.metric-item strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mock-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 100px;
+}
+
+.chart-col {
+  width: 12px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chart-bar {
+  width: 100%;
+  background: #94a3b8;
+  border-radius: 3px;
+}
+
+.chart-bar.dark { background: var(--primary-teal); }
+.chart-bar.salmon { background: #fca5a5; }
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.saved-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.saved-card.active {
+  border-color: var(--primary-teal);
+  background: #fafafa;
+}
+
+.card-details {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-type {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.card-type.visa { color: #1d4ed8; }
+.card-type.mc { color: #ea580c; }
+
+.card-digits {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.saved-card small {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.badge-default {
+  font-size: 11px;
+  font-weight: 600;
+  background: #dcfce7;
+  color: #15803d;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-add-card {
+  width: 100%;
+  height: 38px;
+  background: var(--primary-teal);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   6. Pricing Matrix (Dark Shell)
+   -------------------------------------------------------------------------- */
+.pricing-container {
+  background: #090e11;
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  color: #ffffff;
+}
+
+.pricing-heading {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.plan-box {
+  background: #111820;
+  border: 1px solid #1f2937;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.plan-box.highlighted {
+  border-color: #00b87c;
+  box-shadow: 0 0 24px rgba(0, 184, 124, 0.15);
+}
+
+.plan-tier {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.price-tag {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.price-tag .sym {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.price-tag .val {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.price-tag .per {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-left: 4px;
+}
+
+.plan-info {
+  font-size: 12px;
+  color: #9ca3af;
+  min-height: 38px;
+}
+
+.plan-sub {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.plan-perks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: #d1d5db;
+  margin-bottom: 12px;
+}
+
+.btn-outline-pill {
+  width: 100%;
+  height: 38px;
+  background: transparent;
+  border: 1px solid #374151;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.plan-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.btn-solid-pill {
+  width: 100%;
+  height: 38px;
+  background: #ffffff;
+  color: #090e11;
+  border: none;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-ghost-pill {
+  width: 100%;
+  height: 34px;
+  background: transparent;
+  border: 1px solid #374151;
+  border-radius: 999px;
+  color: #9ca3af;
+  font-size: 12px;
+  cursor: pointer;
+}
+/* Logo Button Styling */
+.btn-logo {
+  padding: 6px;
+  overflow: hidden;
+}
+
+.top-nav-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* If used inside the Payment Method circular badge */
+.status-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #0f3832;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.status-indicator img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
