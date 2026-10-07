@@ -23,6 +23,9 @@ A modular, responsive billing dashboard view Figma design. Built with semantic H
 4. **Usage Overview (Current Period)**
    - 5-metric progress tracker tracking Active Users (43%), Storage (60%), Reports (25%), Active Dashboards (48%), and Data Processing (50%).
 
+     <img width="943" height="466" alt="image" src="https://github.com/user-attachments/assets/27444ed9-46b5-4b78-bbc3-0e7d3ecfc7f2" />
+
+
 5. **Split Operations Panel**
    - **Billing History:** Summary indicators ($29,450.00 Total Paid, Total Invoiced, Outstanding Amount) + visual CSS bar chart.
    - **Payment Methods:** Saved cards list (Visa default, Mastercard alternatives) + "Add New Payment Method" action.
@@ -30,6 +33,9 @@ A modular, responsive billing dashboard view Figma design. Built with semantic H
 6. **Subscription Pricing Matrix**
    - Dark theme container titled *Choose the Right Plan for Your Business*.
    - 3-tier matrix: **Basic ($29/mo)**, **Enterprise ($79/mo, active highlighted)**, and **Standard ($199/mo)** with feature checklists and call-to-action buttons.
+  
+     <img width="929" height="434" alt="image" src="https://github.com/user-attachments/assets/a4cde6dd-6686-4edb-a644-bd7d0382f8c1" />
+
 
 ---
 
