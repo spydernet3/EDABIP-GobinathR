@@ -1,346 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Billing - EDABIP</title>
-    <link rel="stylesheet" href="Billing.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billing - EDABIP</title>
+  <link rel="stylesheet" href="billing.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-
 <body>
 
-    <main class="billing-page">
+  <main class="billing-page" id="billing-module">
 
-        <!-- Top Navigation / Search -->
-        <!-- Top Navigation Bar -->
-        <header class="top-nav">
-            <div class="search-input-wrap">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input type="search" placeholder="Search" />
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="search-input-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="search" placeholder="Search..." id="billing-search" />
+        <button type="button" class="btn-clear" aria-label="Clear Search">✕</button>
+      </div>
+
+      <div class="top-nav-right">
+        <button type="button" class="btn-dropdown">
+          <span>📅 Last 30 Days</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <div class="select-wrapper">
+          <select class="category-select">
+            <option>All Categories</option>
+            <option>Invoices</option>
+            <option>Subscriptions</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn-icon" aria-label="Notifications">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="btn-icon logo-icon" aria-label="Brand Logo">
+          <img src="assets/logo.png" alt="Logo" class="top-logo-img" />
+        </button>
+      </div>
+    </header>
+
+    <!-- Header & Action Row -->
+    <section class="page-header">
+      <div class="header-left">
+        <h1 class="main-title">Billing</h1>
+        <div class="welcome-row">
+          <h2>Welcome Back, Alin!</h2>
+          <span class="status-badge-outline">Active Plan</span>
+        </div>
+        <p class="tagline">Stay updated with real-time usage metrics and manage your account seamlessly.</p>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" class="btn-refresh" id="btn-refresh">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+          <span>Refresh</span>
+        </button>
+        <button type="button" class="btn-export">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Export
+        </button>
+      </div>
+    </section>
+
+    <!-- 1. Key Stat Metrics (4 Cards) -->
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-top">
+          <div class="stat-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <span class="stat-title">Current Plan</span>
+        </div>
+        <div class="stat-value">Enterprise</div>
+        <span class="pill pill-green">Active Plan</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <div class="stat-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <span class="stat-title">Current Period</span>
+        </div>
+        <div class="stat-value">May 1 - May 31, 2025</div>
+        <span class="pill pill-green">Auto-Renewing</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <div class="stat-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </div>
+          <span class="stat-title">Amount Due</span>
+        </div>
+        <div class="stat-value">$2,450.00</div>
+        <span class="pill pill-orange">Due on May 7, 2025</span>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <div class="stat-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <span class="stat-title">Last Payment</span>
+        </div>
+        <div class="stat-value">$2,450.00</div>
+        <span class="pill pill-green">Paid on Apr 22, 2025</span>
+      </article>
+    </section>
+
+    <!-- 2. Usage Overview -->
+    <section class="usage-section">
+      <h3 class="section-heading">Usage Overview (Current Period)</h3>
+      <div class="usage-grid">
+        <div class="usage-card">
+          <div class="usage-header">
+            <span class="usage-title">Active Users</span>
+            <span class="usage-pct">43%</span>
+          </div>
+          <div class="usage-amount">86 / 200</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 43%;"></div>
+          </div>
+        </div>
+
+        <div class="usage-card">
+          <div class="usage-header">
+            <span class="usage-title">Storage Usage</span>
+            <span class="usage-pct">60%</span>
+          </div>
+          <div class="usage-amount">1.2 TB / 2 TB</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 60%;"></div>
+          </div>
+        </div>
+
+        <div class="usage-card">
+          <div class="usage-header">
+            <span class="usage-title">Reports Generated</span>
+            <span class="usage-pct">25%</span>
+          </div>
+          <div class="usage-amount">1,245 / 5,000</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 25%;"></div>
+          </div>
+        </div>
+
+        <div class="usage-card">
+          <div class="usage-header">
+            <span class="usage-title">Active Dashboards</span>
+            <span class="usage-pct">48%</span>
+          </div>
+          <div class="usage-amount">48 / 100</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 48%;"></div>
+          </div>
+        </div>
+
+        <div class="usage-card">
+          <div class="usage-header">
+            <span class="usage-title">Data Processing</span>
+            <span class="usage-pct">50%</span>
+          </div>
+          <div class="usage-amount">2.5 TB / 5 TB</div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 50%;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Split Section (Billing History & Payment Method) -->
+    <section class="split-section">
+      <article class="panel-card">
+        <h3 class="panel-heading">Billing History</h3>
+        <div class="history-content-wrap">
+          <div class="history-stats">
+            <div class="history-item">
+              <span class="history-label">Total Paid</span>
+              <strong class="history-value">$29,450.00</strong>
             </div>
-
-            <div class="nav-actions">
-                <!-- Notification Bell -->
-                <button type="button" class="btn-icon" aria-label="Notifications">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                    </svg>
-                </button>
-
-                <!-- Brand Logo Button -->
-                <button type="button" class="btn-icon btn-logo" aria-label="Brand Logo">
-                    <img src="assets/logo.png" alt="Logo" class="top-nav-logo" />
-                </button>
+            <div class="history-item">
+              <span class="history-label">Total Invoiced</span>
+              <strong class="history-value">516</strong>
             </div>
-        </header>
-
-        <!-- Page Header & Filters -->
-        <section class="page-header">
-            <div class="header-left">
-                <h1 class="main-title">Billing</h1>
-                <div class="welcome-tag">
-                    <h2>Welcome Back, Alin!</h2>
-                    <span class="status-pill">Active Plan</span>
-                </div>
-                <p class="tagline">Stay updated with real-time usage metrics and manage your account seamlessly.</p>
+            <div class="history-item">
+              <span class="history-label">Outstanding Amount</span>
+              <strong class="history-value">$0.00</strong>
             </div>
+          </div>
 
-            <div class="header-actions">
-                <button type="button" class="btn-filter">📅 Last 30 Days</button>
-                <select class="category-select">
-                    <option>All Categories</option>
-                </select>
-                <button type="button" class="btn-refresh">↻ Refresh</button>
+          <div class="chart-container">
+            <div class="bar-slot"><div class="chart-bar bar-muted" style="height: 45%;"></div></div>
+            <div class="bar-slot"><div class="chart-bar bar-muted" style="height: 70%;"></div></div>
+            <div class="bar-slot"><div class="chart-bar bar-primary" style="height: 98%;"></div></div>
+            <div class="bar-slot"><div class="chart-bar bar-primary" style="height: 65%;"></div></div>
+            <div class="bar-slot"><div class="chart-bar bar-muted" style="height: 50%;"></div></div>
+            <div class="bar-slot"><div class="chart-bar bar-accent" style="height: 58%;"></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel-card">
+        <div class="panel-top-bar">
+          <h3 class="panel-heading">Payment Method</h3>
+          <div class="payment-brand-badge">
+            <img src="assets/logo.png" alt="Badge" />
+          </div>
+        </div>
+
+        <div class="cards-stack">
+          <div class="payment-card-row selected">
+            <div class="card-left">
+              <span class="radio-dot active"></span>
+              <span class="card-logo visa-text">VISA</span>
+              <div class="card-text">
+                <span class="card-name">Visa ending in 4242</span>
+                <span class="card-sub">Expires 04/28</span>
+              </div>
             </div>
-        </section>
+            <span class="card-status-badge">Default</span>
+          </div>
 
-        <!-- Summary Metrics -->
-        <section class="stats-row">
-            <!-- Card 1 -->
-            <div class="stat-card">
-                <div class="card-head">
-                    <div class="icon-box teal">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <rect x="2" y="7" width="20" height="14" rx="2"></rect>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                        </svg>
-                    </div>
-                    <span class="card-title">Current Plan</span>
-                </div>
-                <div class="card-number">Enterprise</div>
-                <span class="tag-badge green">1 Year Warranty</span>
+          <div class="payment-card-row">
+            <div class="card-left">
+              <span class="radio-dot"></span>
+              <span class="mastercard-circles">
+                <span class="circle-red"></span>
+                <span class="circle-orange"></span>
+              </span>
+              <div class="card-text">
+                <span class="card-name">Mastercard ending in 8831</span>
+                <span class="card-sub">Expires 11/26</span>
+              </div>
             </div>
+            <button type="button" class="btn-set-default">Set Default</button>
+          </div>
 
-            <!-- Card 2 -->
-            <div class="stat-card">
-                <div class="card-head">
-                    <div class="icon-box teal">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                    </div>
-                    <span class="card-title">Current Period</span>
-                </div>
-                <div class="card-number">May 1 - May 31, 2025</div>
-                <span class="tag-badge green">Auto-Renewing</span>
+          <div class="payment-card-row">
+            <div class="card-left">
+              <span class="radio-dot"></span>
+              <span class="mastercard-circles">
+                <span class="circle-red"></span>
+                <span class="circle-orange"></span>
+              </span>
+              <div class="card-text">
+                <span class="card-name">Mastercard ending in 9012</span>
+                <span class="card-sub">Expires 08/29</span>
+              </div>
             </div>
+            <button type="button" class="btn-set-default">Set Default</button>
+          </div>
+        </div>
 
-            <!-- Card 3 -->
-            <div class="stat-card">
-                <div class="card-head">
-                    <div class="icon-box dark">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <line x1="12" y1="1" x2="12" y2="23"></line>
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                        </svg>
-                    </div>
-                    <span class="card-title">Amount Due</span>
-                </div>
-                <div class="card-number">$2,450.00</div>
-                <span class="tag-badge orange">Due on May 7, 2025</span>
-            </div>
+        <button type="button" class="btn-add-method">+ Add New Payment Method</button>
+      </article>
+    </section>
 
-            <!-- Card 4 -->
-            <div class="stat-card">
-                <div class="card-head">
-                    <div class="icon-box dark">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                    </div>
-                    <span class="card-title">Last Payment</span>
-                </div>
-                <div class="card-number">$2,450.00</div>
-                <span class="tag-badge green">Paid on Apr 22, 2025</span>
-            </div>
-        </section>
+    <!-- 4. Consistent Themed Subscription Plans -->
+    <section class="pricing-panel">
+      <div class="pricing-header-center">
+        <h2 class="pricing-title">Choose the Right Plan for Your Business</h2>
+        <p class="pricing-subtitle">Scale your team and power your business with transparent, predictable pricing.</p>
+      </div>
 
-        <!-- Usage Meters -->
-        <section class="usage-block">
-            <h3 class="block-title">Usage Overview (Current Period)</h3>
-            <div class="usage-grid">
-                <div class="usage-box">
-                    <div class="usage-info">
-                        <span>Active Users</span>
-                        <strong>43%</strong>
-                    </div>
-                    <div class="usage-stats">86 / 200</div>
-                    <div class="meter-bar">
-                        <div class="meter-fill" style="width: 43%;"></div>
-                    </div>
-                </div>
+      <div class="plans-grid">
+        <!-- Basic -->
+        <div class="plan-card">
+          <h4 class="plan-type">Basic</h4>
+          <div class="plan-price">
+            <span class="plan-cur">$</span>
+            <span class="plan-val">29</span>
+            <span class="plan-term">/month</span>
+          </div>
+          <p class="plan-desc">Ideal for startups and small teams exploring cloud solutions with essential tools.</p>
+          <div class="plan-divider"><span>WHAT YOU WILL GET</span></div>
+          <ul class="features-list">
+            <li><span class="check">✓</span> Up to 5 Users</li>
+            <li><span class="check">✓</span> 10 GB Storage</li>
+            <li><span class="check">✓</span> 100 Reports / Month</li>
+            <li><span class="check">✓</span> Standard Support</li>
+          </ul>
+          <button type="button" class="btn-plan-action">Select Plan</button>
+        </div>
 
-                <div class="usage-box">
-                    <div class="usage-info">
-                        <span>Storage Usage</span>
-                        <strong>60%</strong>
-                    </div>
-                    <div class="usage-stats">1.2 TB / 2 TB</div>
-                    <div class="meter-bar">
-                        <div class="meter-fill" style="width: 60%;"></div>
-                    </div>
-                </div>
+        <!-- Enterprise (Active / Highlighted in matching theme) -->
+        <div class="plan-card featured-plan">
+          <div class="featured-badge">Current Plan</div>
+          <h4 class="plan-type">Enterprise</h4>
+          <div class="plan-price">
+            <span class="plan-cur">$</span>
+            <span class="plan-val">79</span>
+            <span class="plan-term">/month</span>
+          </div>
+          <p class="plan-desc">For growing teams needing more power, storage, and smarter collaboration.</p>
+          <div class="plan-divider"><span>WHAT YOU WILL GET</span></div>
+          <ul class="features-list">
+            <li><span class="check">✓</span> Up to 20 Users</li>
+            <li><span class="check">✓</span> 100 GB Storage</li>
+            <li><span class="check">✓</span> 1,000 Reports / Month</li>
+            <li><span class="check">✓</span> 24/7 Priority Support</li>
+          </ul>
+          <div class="plan-btn-group">
+            <button type="button" class="btn-plan-active">Active Plan</button>
+            <button type="button" class="btn-plan-deactivate">Deactivate Plan</button>
+          </div>
+        </div>
 
-                <div class="usage-box">
-                    <div class="usage-info">
-                        <span>Reports Generated</span>
-                        <strong>25%</strong>
-                    </div>
-                    <div class="usage-stats">1,245 / 5,000</div>
-                    <div class="meter-bar">
-                        <div class="meter-fill" style="width: 25%;"></div>
-                    </div>
-                </div>
+        <!-- Standard -->
+        <div class="plan-card">
+          <h4 class="plan-type">Standard</h4>
+          <div class="plan-price">
+            <span class="plan-cur">$</span>
+            <span class="plan-val">199</span>
+            <span class="plan-term">/month</span>
+          </div>
+          <p class="plan-desc">For large organizations requiring top-tier security, high throughput, and dedicated support.</p>
+          <div class="plan-divider"><span>WHAT YOU WILL GET</span></div>
+          <ul class="features-list">
+            <li><span class="check">✓</span> Up to 200 Users</li>
+            <li><span class="check">✓</span> 2 TB Storage</li>
+            <li><span class="check">✓</span> 5,000 Reports / Month</li>
+            <li><span class="check">✓</span> 24/7 Dedicated Support</li>
+          </ul>
+          <button type="button" class="btn-plan-action">Select Plan</button>
+        </div>
+      </div>
+    </section>
 
-                <div class="usage-box">
-                    <div class="usage-info">
-                        <span>Active Dashboards</span>
-                        <strong>48%</strong>
-                    </div>
-                    <div class="usage-stats">48 / 100</div>
-                    <div class="meter-bar">
-                        <div class="meter-fill" style="width: 48%;"></div>
-                    </div>
-                </div>
+  </main>
 
-                <div class="usage-box">
-                    <div class="usage-info">
-                        <span>Data Processing</span>
-                        <strong>50%</strong>
-                    </div>
-                    <div class="usage-stats">2.5 TB / 5 TB</div>
-                    <div class="meter-bar">
-                        <div class="meter-fill" style="width: 50%;"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Split Section: Billing History & Payment Method -->
-        <section class="split-row">
-            <!-- Billing History Chart Card -->
-            <div class="panel billing-history-panel">
-                <h3 class="panel-title">Billing History</h3>
-                <div class="history-body">
-                    <div class="history-metrics">
-                        <div class="metric-item">
-                            <label>Total Paid</label>
-                            <strong>$29,450.00</strong>
-                        </div>
-                        <div class="metric-item">
-                            <label>Total Invoiced</label>
-                            <strong>516</strong>
-                        </div>
-                        <div class="metric-item">
-                            <label>Outstanding Amount</label>
-                            <strong>$0.00</strong>
-                        </div>
-                    </div>
-
-                    <div class="mock-chart">
-                        <div class="chart-col"><span class="chart-bar" style="height: 40%;"></span></div>
-                        <div class="chart-col"><span class="chart-bar" style="height: 65%;"></span></div>
-                        <div class="chart-col"><span class="chart-bar dark" style="height: 95%;"></span></div>
-                        <div class="chart-col"><span class="chart-bar dark" style="height: 70%;"></span></div>
-                        <div class="chart-col"><span class="chart-bar" style="height: 55%;"></span></div>
-                        <div class="chart-col"><span class="chart-bar salmon" style="height: 60%;"></span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Payment Method Card -->
-            <div class="panel payment-panel">
-                <div class="panel-head">
-                    <h3 class="panel-title">Payment Method</h3>
-                </div>
-                <div class="card-list">
-                    <div class="saved-card active">
-                        <div class="card-details">
-                            <span class="card-type visa">VISA</span>
-                            <div>
-                                <p class="card-digits">Visa ending in 4242</p>
-                                <small>Expires 04/28</small>
-                            </div>
-                        </div>
-                        <span class="badge-default">Default</span>
-                    </div>
-
-                    <div class="saved-card">
-                        <div class="card-details">
-                            <span class="card-type mc">MC</span>
-                            <div>
-                                <p class="card-digits">Mastercard ending in 8831</p>
-                                <small>Expires 11/26</small>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-text">Set Default</button>
-                    </div>
-
-                    <div class="saved-card">
-                        <div class="card-details">
-                            <span class="card-type mc">MC</span>
-                            <div>
-                                <p class="card-digits">Mastercard ending in 9012</p>
-                                <small>Expires 08/29</small>
-                            </div>
-                        </div>
-                        <button type="button" class="btn-text">Set Default</button>
-                    </div>
-                </div>
-                <button type="button" class="btn-add-card">+ Add New Payment Method</button>
-            </div>
-        </section>
-
-        <!-- Pricing Section (Dark Theme) -->
-        <section class="pricing-container">
-            <h2 class="pricing-heading">Choose the Right Plan for Your Business</h2>
-
-            <div class="plans-grid">
-                <!-- Basic -->
-                <div class="plan-box">
-                    <h4 class="plan-tier">Basic</h4>
-                    <div class="price-tag">
-                        <span class="sym">$</span>
-                        <span class="val">29</span>
-                        <span class="per">/monthly</span>
-                    </div>
-                    <p class="plan-info">Ideal for startups and small teams who want to explore cloud solutions with
-                        essential tools.</p>
-                    <div class="plan-sub"><span>WHAT YOU WILL GET</span></div>
-                    <ul class="plan-perks">
-                        <li>✓ Up to 5 Users</li>
-                        <li>✓ 10 GB Storage</li>
-                        <li>✓ 100 Reports / Month</li>
-                        <li>✓ 24/7 Support</li>
-                    </ul>
-                    <button type="button" class="btn-outline-pill">Select Plan</button>
-                </div>
-
-                <!-- Enterprise (Highlighted) -->
-                <div class="plan-box highlighted">
-                    <h4 class="plan-tier">Enterprise</h4>
-                    <div class="price-tag">
-                        <span class="sym">$</span>
-                        <span class="val">79</span>
-                        <span class="per">/monthly</span>
-                    </div>
-                    <p class="plan-info">For growing teams needing more power, storage, and smarter collaboration.</p>
-                    <div class="plan-sub"><span>WHAT YOU WILL GET</span></div>
-                    <ul class="plan-perks">
-                        <li>✓ Up to 20 Users</li>
-                        <li>✓ 100 GB Storage</li>
-                        <li>✓ 1,000 Reports / Month</li>
-                        <li>✓ 24/7 Support</li>
-                    </ul>
-                    <div class="plan-actions">
-                        <button type="button" class="btn-solid-pill">Active Plan</button>
-                        <button type="button" class="btn-ghost-pill">Deactivate Plan</button>
-                    </div>
-                </div>
-
-                <!-- Standard -->
-                <div class="plan-box">
-                    <h4 class="plan-tier">Standard</h4>
-                    <div class="price-tag">
-                        <span class="sym">$</span>
-                        <span class="val">199</span>
-                        <span class="per">/monthly</span>
-                    </div>
-                    <p class="plan-info">For large organizations that need top security, high performance, and dedicated
-                        support.</p>
-                    <div class="plan-sub"><span>WHAT YOU WILL GET</span></div>
-                    <ul class="plan-perks">
-                        <li>✓ Up to 200 Users</li>
-                        <li>✓ 2 TB Storage</li>
-                        <li>✓ 5,000 Reports / Month</li>
-                        <li>✓ 24/7 Support</li>
-                    </ul>
-                    <button type="button" class="btn-outline-pill">Select Plan</button>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <script src="billing.js"></script>
-    
+  <script src="billing.js"></script>
 </body>
-
 </html>
