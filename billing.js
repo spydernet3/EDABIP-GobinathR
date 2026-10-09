@@ -1,115 +1,120 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Payment Method Default Switcher
-  const cardItems = document.querySelectorAll(".card-list .saved-card");
+  // 1. Payment Method Default Toggler
+  const cardRows = document.querySelectorAll(".cards-stack .payment-card-row");
 
-  cardItems.forEach((card) => {
-    const setDefaultBtn = card.querySelector(".btn-text");
+  function refreshCardListeners() {
+    cardRows.forEach((row) => {
+      const btn = row.querySelector(".btn-set-default");
+      if (btn) {
+        btn.onclick = () => {
+          // Unset all rows
+          cardRows.forEach((r) => {
+            r.classList.remove("selected");
+            const dot = r.querySelector(".radio-dot");
+            if (dot) dot.classList.remove("active");
 
-    if (setDefaultBtn) {
-      setDefaultBtn.addEventListener("click", () => {
-        // Reset all cards
-        cardItems.forEach((c) => {
-          c.classList.remove("active");
-          const existingBadge = c.querySelector(".badge-default");
-          if (existingBadge) {
-            existingBadge.remove();
-            const newBtn = document.createElement("button");
-            newBtn.type = "button";
-            newBtn.className = "btn-text";
-            newBtn.textContent = "Set Default";
-            c.appendChild(newBtn);
-            // Re-attach listener
-            attachDefaultListener(c, newBtn);
+            const badge = r.querySelector(".card-status-badge");
+            if (badge) {
+              badge.remove();
+              const newBtn = document.createElement("button");
+              newBtn.type = "button";
+              newBtn.className = "btn-set-default";
+              newBtn.textContent = "Set Default";
+              r.appendChild(newBtn);
+            }
+          });
+
+          // Set clicked row
+          row.classList.add("selected");
+          const activeDot = row.querySelector(".radio-dot");
+          if (activeDot) activeDot.classList.add("active");
+
+          btn.remove();
+          const newBadge = document.createElement("span");
+          newBadge.className = "card-status-badge";
+          newBadge.textContent = "Default";
+          row.appendChild(newBadge);
+
+          refreshCardListeners();
+        };
+      }
+    });
+  }
+  refreshCardListeners();
+
+  // 2. Add New Payment Method
+  const addBtn = document.querySelector(".btn-add-method");
+  if (addBtn) {
+    addBtn.addEventListener("click", () => {
+      alert("Opening payment method provider...");
+    });
+  }
+
+  // 3. Plan Switcher
+  const planCards = document.querySelectorAll(".plans-grid .plan-card");
+  planCards.forEach((card) => {
+    const actionBtn = card.querySelector(".btn-plan-action");
+    if (actionBtn) {
+      actionBtn.addEventListener("click", () => {
+        planCards.forEach((c) => {
+          c.classList.remove("featured-plan");
+          const badge = c.querySelector(".featured-badge");
+          if (badge) badge.remove();
+
+          // Reset button to standard action
+          const group = c.querySelector(".plan-btn-group");
+          if (group) {
+            group.remove();
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "btn-plan-action";
+            btn.textContent = "Select Plan";
+            c.appendChild(btn);
           }
         });
 
-        // Set current card as active
-        card.classList.add("active");
-        setDefaultBtn.remove();
+        // Set new featured card
+        card.classList.add("featured-plan");
+        const newBadge = document.createElement("div");
+        newBadge.className = "featured-badge";
+        newBadge.textContent = "Current Plan";
+        card.prepend(newBadge);
 
-        const badge = document.createElement("span");
-        badge.className = "badge-default";
-        badge.textContent = "Default";
-        card.appendChild(badge);
-      });
-    }
-  });
-
-  function attachDefaultListener(cardElement, buttonElement) {
-    buttonElement.addEventListener("click", () => {
-      cardItems.forEach((c) => {
-        c.classList.remove("active");
-        const badge = c.querySelector(".badge-default");
-        if (badge) {
-          badge.remove();
-          const btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "btn-text";
-          btn.textContent = "Set Default";
-          c.appendChild(btn);
-          attachDefaultListener(c, btn);
-        }
-      });
-      cardElement.classList.add("active");
-      buttonElement.remove();
-      const badge = document.createElement("span");
-      badge.className = "badge-default";
-      badge.textContent = "Default";
-      cardElement.appendChild(badge);
-    });
-  }
-
-  // 2. Add Payment Method Action
-  const addPaymentBtn = document.querySelector(".btn-add-card");
-  if (addPaymentBtn) {
-    addPaymentBtn.addEventListener("click", () => {
-      alert("Opening secure payment method gateway...");
-    });
-  }
-
-  // 3. Pricing Tier Selector
-  const planBoxes = document.querySelectorAll(".plans-grid .plan-box");
-  planBoxes.forEach((box) => {
-    const selectBtn = box.querySelector(".btn-outline-pill");
-    if (selectBtn) {
-      selectBtn.addEventListener("click", () => {
-        planBoxes.forEach((b) => b.classList.remove("highlighted"));
-        box.classList.add("highlighted");
+        actionBtn.remove();
+        const btnGroup = document.createElement("div");
+        btnGroup.className = "plan-btn-group";
+        btnGroup.innerHTML = `
+          <button type="button" class="btn-plan-active">Active Plan</button>
+          <button type="button" class="btn-plan-deactivate">Deactivate Plan</button>
+        `;
+        card.appendChild(btnGroup);
       });
     }
   });
 
   // 4. Refresh Button Feedback
-  const refreshBtn = document.querySelector(".btn-refresh");
+  const refreshBtn = document.getElementById("btn-refresh");
   if (refreshBtn) {
     refreshBtn.addEventListener("click", () => {
-      const originalText = refreshBtn.textContent;
-      refreshBtn.textContent = "Updating...";
+      const textSpan = refreshBtn.querySelector("span");
+      const originalText = textSpan.textContent;
+      textSpan.textContent = "Updating...";
       refreshBtn.disabled = true;
 
       setTimeout(() => {
-        refreshBtn.textContent = originalText;
+        textSpan.textContent = originalText;
         refreshBtn.disabled = false;
-      }, 1000);
+      }, 800);
     });
   }
 
-  // 5. Search Bar Handling
-  const searchInput = document.querySelector(".search-input-wrap input");
-  if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase().trim();
-      // Filters stat cards based on title text
-      const statCards = document.querySelectorAll(".stats-row .stat-card");
-      statCards.forEach((card) => {
-        const title = card.querySelector(".card-title")?.textContent.toLowerCase() || "";
-        const val = card.querySelector(".card-number")?.textContent.toLowerCase() || "";
-        if (title.includes(query) || val.includes(query)) {
-          card.style.display = "flex";
-        } else {
-          card.style.display = query === "" ? "flex" : "none";
-        }
-      });
+  // 5. Clear Search Input
+  const searchInput = document.getElementById("billing-search");
+  const clearBtn = document.querySelector(".btn-clear");
+  if (clearBtn && searchInput) {
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      searchInput.focus();
     });
   }
 });
